@@ -1,0 +1,54 @@
+﻿  Button.cpp
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(9,23): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(10,24): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(38,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(53,14): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(54,14): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(56,19): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Data\VS\Djikstra\Djikstra\Button.cpp(57,20): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  City.cpp
+D:\Data\VS\Djikstra\Djikstra\City.cpp(15,36): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+D:\Data\VS\Djikstra\Djikstra\City.cpp(21,20): warning C4018: '<': signed/unsigned mismatch
+  DrawLine.cpp
+  Main.cpp
+  Text.cpp
+D:\Data\VS\Djikstra\Djikstra\Text.cpp(31,20): warning C4018: '<': signed/unsigned mismatch
+  Textbox.cpp
+D:\Data\VS\Djikstra\Djikstra\Textbox.cpp(45,21): warning C4018: '<': signed/unsigned mismatch
+D:\Data\VS\Djikstra\Djikstra\Textbox.cpp(71,29): warning C4018: '<=': signed/unsigned mismatch
+D:\Data\VS\Djikstra\Djikstra\Textbox.cpp(75,34): warning C4018: '>': signed/unsigned mismatch
+D:\Data\VS\Djikstra\Djikstra\Textbox.cpp(91,20): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  218 of 224 functions (97.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Djikstra.vcxproj -> D:\Data\VS\Djikstra\Release\Djikstra.exe
