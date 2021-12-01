@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include "SFML.h"
 #include "Textbox.h"
 #include "Button.h"
 #include "Text.h"
@@ -11,17 +11,21 @@ int main()
 	sf::RenderWindow window;
 
 	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
+	
 
-	window.create(sf::VideoMode(1600, 900), "SFML Textbox", sf::Style::Titlebar | sf::Style::Close);
+	window.create(sf::VideoMode(1600, 900), "Djikstra", sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(centerWindow);
 
 	window.setKeyRepeatEnabled(true);
 
 	sf::Font font;
-	if (!font.loadFromFile("arial.ttf"))
-		std::cout << "Font not found!\n";
+	if (!font.loadFromFile("Assets/Font/arial.ttf"))
+	{
+		std::cout << "Font tidak ditemukan\n";
+	}
+		
 
-	Textbox text1(20, sf::Color::White, false), text2(20, sf::Color::White, false), text3(20, sf::Color::White, false);
+	Textbox text1(20, sf::Color::White, false), text2(20, sf::Color::White, false), text3(20, sf::Color::White, false), text4(20, sf::Color::White, false), text5(20, sf::Color::White, false);
 	text1.setPosition({ 10, 25 });
 	text1.setLimit(true, 6);
 	text1.setFont(font);
@@ -34,15 +38,27 @@ int main()
 	text3.setLimit(true, 3);
 	text3.setFont(font);
 
-	Button btn1("Enter", { 50, 30 }, 18, sf::Color::Green, sf::Color::Black);
+	text4.setPosition({ 300, 25 });
+	text4.setLimit(true, 6);
+	text4.setFont(font);
+
+	text5.setPosition({ 300, 75 });
+	text5.setLimit(true, 6);
+	text5.setFont(font);
+
+	Button btn1("Masuk", { 60, 20 }, 14, sf::Color::Green, sf::Color::Black);
 	btn1.setFont(font);
-	btn1.setPosition({ 100, 110 });
+	btn1.setPosition({ 100, 125 });
 	size_t x = 0;
+
+	Button btn2("Hubung", { 60, 20 }, 14, sf::Color::Green, sf::Color::Black);
+	btn2.setFont(font);
+	btn2.setPosition({ 400, 125 });
 
 	Text tx1;
 	tx1.setFontTx(font);
 
-	sf::Text help1, help2, help3;
+	sf::Text help1, help2, help3, help4, help5;
 	help1.setString("Nama Kota");
 	help1.setCharacterSize(14);
 	help1.setPosition({ 10, 10 });
@@ -55,6 +71,14 @@ int main()
 	help3.setCharacterSize(14);
 	help3.setPosition({ 10, 110 });
 	help3.setFont(font);
+	help4.setString("Kota Asal");
+	help4.setCharacterSize(14);
+	help4.setPosition({ 300, 10 });
+	help4.setFont(font);
+	help5.setString("Kota Tujuan");
+	help5.setCharacterSize(14);
+	help5.setPosition({ 300, 60 });
+	help5.setFont(font);
 	City city;
 
 
@@ -66,17 +90,39 @@ int main()
 			text1.setSelected(true);
 			text2.setSelected(false);
 			text3.setSelected(false);
+			text4.setSelected(false);
+			text5.setSelected(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			text1.setSelected(false);
 			text2.setSelected(true);
 			text3.setSelected(false);
+			text4.setSelected(false);
+			text5.setSelected(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
 		{
 			text1.setSelected(false);
 			text2.setSelected(false);
 			text3.setSelected(true);
+			text4.setSelected(false);
+			text5.setSelected(false);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
+		{
+			text1.setSelected(false);
+			text2.setSelected(false);
+			text3.setSelected(false);
+			text4.setSelected(true);
+			text5.setSelected(false);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
+		{
+			text1.setSelected(false);
+			text2.setSelected(false);
+			text3.setSelected(false);
+			text4.setSelected(false);
+			text5.setSelected(true);
 		}
 
 		//Event Loop:
@@ -89,6 +135,8 @@ int main()
 				text1.typedOn(Event);
 				text2.typedOn(Event);
 				text3.typedOn(Event);
+				text4.typedOn(Event);
+				text5.typedOn(Event);
 			case sf::Event::MouseMoved:
 				if (btn1.isMouseOver(window)) {
 					btn1.setBackColor(sf::Color::Magenta);
@@ -96,7 +144,14 @@ int main()
 				else {
 					btn1.setBackColor(sf::Color::Green);
 				}
+				if (btn2.isMouseOver(window)) {
+					btn2.setBackColor(sf::Color::Magenta);
+				}
+				else {
+					btn2.setBackColor(sf::Color::Green);
+				}
 				break;
+				
 			case sf::Event::MouseButtonPressed:
 				if (btn1.isMouseOver(window)) {
 					std::string z = text1.getText();
@@ -105,18 +160,28 @@ int main()
 					tx1.input(z, x, y);
 					city.img(x, y);
 				}
+				else if (btn2.isMouseOver(window)) {
+					std::string namaasal = text4.getText();
+					std::string namatujuan = text5.getText();
+					tx1.caritujuan(namaasal, namatujuan);
+				}
 			}
 		}
 		window.clear();
 		window.draw(help1);
 		window.draw(help2);
 		window.draw(help3);
+		window.draw(help4);
+		window.draw(help5);
 		text1.drawTo(window);
 		text2.drawTo(window);
 		text3.drawTo(window);
+		text4.drawTo(window);
+		text5.drawTo(window);
 		tx1.drawToTx(window);
 		city.drawToImg(window);
 		btn1.drawTo(window);
+		btn2.drawTo(window);
 		window.display();
 	}
 	return 0;

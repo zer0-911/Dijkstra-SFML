@@ -3,14 +3,54 @@
 
 void City::img(std::string ximg, std::string yimg)
 {
+	int x = rand() % 6;
 	ximage = std::stof(ximg);
 	yimage = std::stof(yimg);
-	if (!texture.loadFromFile("building_1.png"))
+	if (x == 1)
 	{
-		printf("error gambar");
+		if (!texture[NodeC].loadFromFile("Assets/Building/building_1.png"))
+		{
+			printf("error gambar");
+		}
 	}
-	DCity[NodeC].setTexture(texture);
-	DCity[NodeC].setPosition({ ximage,yimage });
+	else if (x == 2)
+	{
+		if (!texture[NodeC].loadFromFile("Assets/Building/building_2.png"))
+		{
+			printf("error gambar");
+		}
+	}
+	else if (x == 3)
+	{
+		if (!texture[NodeC].loadFromFile("Assets/Building/building_3.png"))
+		{
+			printf("error gambar");
+		}
+	}
+	else if (x == 4)
+	{
+		if (!texture[NodeC].loadFromFile("Assets/Building/building_4.png"))
+		{
+			printf("error gambar");
+		}
+	}
+	else if (x == 4)
+	{
+		if (!texture[NodeC].loadFromFile("Assets/Building/building_5.png"))
+		{
+			printf("error gambar");
+		}
+	}
+	else 
+	{
+		if (!texture[NodeC].loadFromFile("Assets/Building/building_6.png"))
+		{
+			printf("error gambar");
+		}
+	}
+	
+	DCity[NodeC].setTexture(texture[NodeC]);
+	DCity[NodeC].setPosition({ ximage-25,yimage });
 	DCity[NodeC].setScale({ 0.1, 0.1 });
 	NodeC++;
 }

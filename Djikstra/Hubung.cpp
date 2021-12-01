@@ -1,14 +1,12 @@
 #include "Hubung.h"
 
-void Hubung::Hubungkan()
+void Hubung::Hubungkan(float x1, float y1, float x2, float y2)
 {
     //std::cout << 
     sf::VertexArray line(sf::Lines, 2);
-    line[0].position = sf::Vector2f(x,300);
-    line[1].position = sf::Vector2f(200,y);
+    line[0].position = sf::Vector2f(x1,y1);
+    line[1].position = sf::Vector2f(x2,y2);
     m_vertices.push_back(line);
-    x += 50;
-    y += 50;
 }
 
 void Hubung::drawline(sf::RenderWindow& window)

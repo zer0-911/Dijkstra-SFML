@@ -9,9 +9,8 @@ class Hubung
 private:
 	int jumlah;
 	std::vector<sf::VertexArray> m_vertices;
-	float x = 300, y = 100;
 public:
-	void Hubungkan();
+	void Hubungkan(float x1, float y1, float x2, float y2);
 	void drawline(sf::RenderWindow& window);
 };
 

@@ -3,7 +3,7 @@
 void Text::input(std::string nama, std::string x, std::string y)
 {
 	//std::cout << Node;
-	hubung.Hubungkan();
+	
 	
 	this->tabel();
 	dKotaUtama.kota[Node].nama = nama;
@@ -18,6 +18,9 @@ void Text::input(std::string nama, std::string x, std::string y)
 	text2[Node].setPosition({ xsize+50,ysize });
 	text3[Node].setString(dKotaUtama.kota[Node].ys);
 	text3[Node].setPosition({ xsize+100,ysize });
+	
+	
+	
 	ysize += 20;
 	Node = Node + 1;
 }
@@ -64,6 +67,38 @@ void Text::tabel()
 	line[Node].setPosition({ 20,yline });
 	yline += 20;
 	xline += 20;
+}
+void Text::caritujuan(std::string namaasal, std::string namatujuan)
+{
+	int posD, posK;
+	//Mencari posisi kota yang dihubungkan
+	posD = cari(namaasal);
+	posK = cari(namatujuan);
+	//Permisalan jika posisi TRUE
+	if ((posD >= 0) && (posK >= 0))
+	{
+		hubung.Hubungkan(dKotaUtama.kota[posD].x, dKotaUtama.kota[posD].y, dKotaUtama.kota[posK].x, dKotaUtama.kota[posK].y);
+	}
+}
+int Text::cari(std::string carikota)
+{
+	//posisi awal dari variabel pos yang berarti
+	//tidak ditemukan
+	int pos = -1;
+	//pengulangan untuk mencari sampai menemukan
+	//variabel string yang sama
+	for (int i = 0;i <= Node;i++)
+	{
+		if (dKotaUtama.kota[i].nama == carikota)
+		{
+			//mengubah variabel pos menjadi sama dengan 
+			//indeks
+			pos = i;
+			break;
+		}
+	}
+	//mengembalikan variabel pos
+	return pos;
 }
 void Text::setFontTx(sf::Font& fonts)
 {

@@ -34,6 +34,8 @@ public:
 	void drawToTx(sf::RenderWindow& window);
 	void setFontTx(sf::Font& fonts);
 	void tabel();
+	void caritujuan(std::string namaasal, std::string namatujuan);
+	int cari(std::string carikota);
 private:
 	Hubung hubung;
 	float xsize = 25, ysize =210;
