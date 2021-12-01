@@ -3,6 +3,8 @@
 void Text::input(std::string nama, std::string x, std::string y)
 {
 	//std::cout << Node;
+	hubung.Hubungkan();
+	
 	this->tabel();
 	dKotaUtama.kota[Node].nama = nama;
 	dKotaUtama.kota[Node].xs = x;
@@ -22,12 +24,12 @@ void Text::input(std::string nama, std::string x, std::string y)
 
 void Text::drawToTx(sf::RenderWindow& window)
 {
+	hubung.drawline(window);
 	window.draw(tabel1);
 	window.draw(tabel2);
 	window.draw(tabel3);
 	window.draw(lineatas);
 	window.draw(linebawah);
-	
 	for (int i = 0; i < Node; i++)
 	{
 		window.draw(linekiri[i]);
@@ -41,22 +43,22 @@ void Text::drawToTx(sf::RenderWindow& window)
 void Text::tabel()
 {
 	tabel1.setString("Kota");
-	tabel1.setPosition({ 25,180 });
+	tabel1.setPosition({ 25,190 });
 
 	tabel2.setString("X");
-	tabel2.setPosition({ 78,180 });
+	tabel2.setPosition({ 78,190 });
 
 	tabel3.setString("Y");
-	tabel3.setPosition({ 128,180 });
+	tabel3.setPosition({ 128,190 });
 	lineatas.setSize(sf::Vector2f(135, 1));
-	lineatas.setPosition({ 20,178 });
+	lineatas.setPosition({ 20,188 });
 	linebawah.setSize(sf::Vector2f(135, 1));
-	linebawah.setPosition({ 20,198 });
+	linebawah.setPosition({ 20,208 });
 	linekiri[Node].setSize(sf::Vector2f(xline, 1));
-	linekiri[Node].setPosition({ 20,178 });
+	linekiri[Node].setPosition({ 20,188 });
 	linekiri[Node].rotate(90);
 	linekanan[Node].setSize(sf::Vector2f(xline, 1));
-	linekanan[Node].setPosition({ 155,178 });
+	linekanan[Node].setPosition({ 155,188 });
 	linekanan[Node].rotate(90);
 	line[Node].setSize(sf::Vector2f(135, 1));
 	line[Node].setPosition({ 20,yline });

@@ -4,9 +4,11 @@
 #include "SFML.h"
 #include <Window.hpp>
 #include <string>
+#include "Hubung.h"
+
 
 #define Maksimum 100
-class Text
+class Text 
 {
 public:
 	struct KotaUtama
@@ -33,8 +35,9 @@ public:
 	void setFontTx(sf::Font& fonts);
 	void tabel();
 private:
-	float xsize = 25, ysize =200;
-	float yline = 218;
+	Hubung hubung;
+	float xsize = 25, ysize =210;
+	float yline = 228;
 	float xline = 40;
 	sf::Text text[100],text2[100], text3[100];
 	sf::Text tabel1, tabel2, tabel3;

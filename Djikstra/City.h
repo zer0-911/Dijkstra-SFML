@@ -7,7 +7,6 @@ class City
 private:
 	sf::Texture texture;
 	sf::Sprite DCity[100];
-	size_t Cek;
 	size_t NodeC = 0;
 	float ximage, yimage;
 public:

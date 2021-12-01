@@ -3,7 +3,6 @@
 
 void City::img(std::string ximg, std::string yimg)
 {
-	std::cout << Cek;
 	ximage = std::stof(ximg);
 	yimage = std::stof(yimg);
 	if (!texture.loadFromFile("building_1.png"))

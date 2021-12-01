@@ -4,7 +4,7 @@
 #include "Button.h"
 #include "Text.h"
 #include "City.h"
-
+#include "Hubung.h"
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
 	Textbox text1(20, sf::Color::White, false), text2(20, sf::Color::White, false), text3(20, sf::Color::White, false);
 	text1.setPosition({ 10, 25 });
 	text1.setLimit(true, 6);
-	text1.setFont(font);	
+	text1.setFont(font);
 
 	text2.setPosition({ 10, 75 });
 	text2.setLimit(true, 3);
@@ -56,6 +56,7 @@ int main()
 	help3.setPosition({ 10, 110 });
 	help3.setFont(font);
 	City city;
+
 
 	while (window.isOpen()) {
 
@@ -101,7 +102,7 @@ int main()
 					std::string z = text1.getText();
 					std::string x = text2.getText();
 					std::string y = text3.getText();
-					tx1.input(z,x,y);
+					tx1.input(z, x, y);
 					city.img(x, y);
 				}
 			}
