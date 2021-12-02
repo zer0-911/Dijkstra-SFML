@@ -42,7 +42,7 @@ private:
 	float yline = 228;
 	float xline = 40;
 	sf::Text text[100],text2[100], text3[100];
-	sf::Text tabel1, tabel2, tabel3;
+	sf::Text tabel0,tabel1, tabel2, tabel3;
 	sf::RectangleShape line[100], lineatas, linebawah, linekiri[100], linekanan[100];
 };
 

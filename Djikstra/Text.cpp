@@ -18,9 +18,6 @@ void Text::input(std::string nama, std::string x, std::string y)
 	text2[Node].setPosition({ xsize+50,ysize });
 	text3[Node].setString(dKotaUtama.kota[Node].ys);
 	text3[Node].setPosition({ xsize+100,ysize });
-	
-	
-	
 	ysize += 20;
 	Node = Node + 1;
 }
@@ -28,6 +25,7 @@ void Text::input(std::string nama, std::string x, std::string y)
 void Text::drawToTx(sf::RenderWindow& window)
 {
 	hubung.drawline(window);
+	window.draw(tabel0);
 	window.draw(tabel1);
 	window.draw(tabel2);
 	window.draw(tabel3);
@@ -45,6 +43,9 @@ void Text::drawToTx(sf::RenderWindow& window)
 }
 void Text::tabel()
 {
+	tabel0.setString("Tabel Daftar Kota");
+	tabel0.setPosition({ 30,170 });
+
 	tabel1.setString("Kota");
 	tabel1.setPosition({ 25,190 });
 
@@ -77,7 +78,7 @@ void Text::caritujuan(std::string namaasal, std::string namatujuan)
 	//Permisalan jika posisi TRUE
 	if ((posD >= 0) && (posK >= 0))
 	{
-		hubung.Hubungkan(dKotaUtama.kota[posD].x, dKotaUtama.kota[posD].y, dKotaUtama.kota[posK].x, dKotaUtama.kota[posK].y);
+		hubung.Hubungkan(dKotaUtama.kota[posD].x, dKotaUtama.kota[posD].y, dKotaUtama.kota[posK].x, dKotaUtama.kota[posK].y, namaasal, namatujuan);
 	}
 }
 int Text::cari(std::string carikota)
@@ -102,9 +103,11 @@ int Text::cari(std::string carikota)
 }
 void Text::setFontTx(sf::Font& fonts)
 {
+	tabel0.setFont(fonts);
 	tabel1.setFont(fonts);
 	tabel2.setFont(fonts);
 	tabel3.setFont(fonts);
+	tabel0.setCharacterSize(14);
 	tabel1.setCharacterSize(14);
 	tabel2.setCharacterSize(14);
 	tabel3.setCharacterSize(14);

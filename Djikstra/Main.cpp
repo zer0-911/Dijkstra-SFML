@@ -1,16 +1,16 @@
 #include <iostream>
+#include <string>
 #include "SFML.h"
 #include "Textbox.h"
 #include "Button.h"
 #include "Text.h"
 #include "City.h"
-#include "Hubung.h"
 
 int main()
 {
 	sf::RenderWindow window;
 
-	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
+	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 845, (sf::VideoMode::getDesktopMode().height / 2) - 480);
 	
 
 	window.create(sf::VideoMode(1600, 900), "Djikstra", sf::Style::Titlebar | sf::Style::Close);
@@ -55,10 +55,14 @@ int main()
 	btn2.setFont(font);
 	btn2.setPosition({ 400, 125 });
 
+	Button btn3("Jarak \n Terdekat", { 70, 40 }, 14, sf::Color::Green, sf::Color::Black);
+	btn3.setFont(font);
+	btn3.setPosition({ 700, 125 });
+
 	Text tx1;
 	tx1.setFontTx(font);
 
-	sf::Text help1, help2, help3, help4, help5;
+	sf::Text help1, help2, help3, help4, help5, help6, help7;
 	help1.setString("Nama Kota");
 	help1.setCharacterSize(14);
 	help1.setPosition({ 10, 10 });
@@ -79,6 +83,14 @@ int main()
 	help5.setCharacterSize(14);
 	help5.setPosition({ 300, 60 });
 	help5.setFont(font);
+	help6.setString("Kota Asal");
+	help6.setCharacterSize(14);
+	help6.setPosition({ 600, 10 });
+	help6.setFont(font);
+	help7.setString("Kota Tujuan");
+	help7.setCharacterSize(14);
+	help7.setPosition({ 600, 60 });
+	help7.setFont(font);
 	City city;
 
 
@@ -150,6 +162,12 @@ int main()
 				else {
 					btn2.setBackColor(sf::Color::Green);
 				}
+				if (btn3.isMouseOver(window)) {
+					btn3.setBackColor(sf::Color::Magenta);
+				}
+				else {
+					btn3.setBackColor(sf::Color::Green);
+				}
 				break;
 				
 			case sf::Event::MouseButtonPressed:
@@ -157,8 +175,18 @@ int main()
 					std::string z = text1.getText();
 					std::string x = text2.getText();
 					std::string y = text3.getText();
-					tx1.input(z, x, y);
-					city.img(x, y);
+					float batasx = std::stof(x);
+					float batasy = std::stof(y);
+					if((batasx > 300) && (batasy > 300))
+					{
+						tx1.input(z, x, y);
+						city.img(x, y);
+					}
+					else
+					{
+						std::cout << "Koordinat X dan/atau Koordinat Y terlalu kecil, buat lebih dari x = 300 dan y = 300 \n";
+					}
+					
 				}
 				else if (btn2.isMouseOver(window)) {
 					std::string namaasal = text4.getText();
@@ -173,6 +201,8 @@ int main()
 		window.draw(help3);
 		window.draw(help4);
 		window.draw(help5);
+		window.draw(help6);
+		window.draw(help7);
 		text1.drawTo(window);
 		text2.drawTo(window);
 		text3.drawTo(window);
@@ -182,6 +212,7 @@ int main()
 		city.drawToImg(window);
 		btn1.drawTo(window);
 		btn2.drawTo(window);
+		btn3.drawTo(window);
 		window.display();
 	}
 	return 0;

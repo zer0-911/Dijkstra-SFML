@@ -50,8 +50,8 @@ void City::img(std::string ximg, std::string yimg)
 	}
 	
 	DCity[NodeC].setTexture(texture[NodeC]);
-	DCity[NodeC].setPosition({ ximage-25,yimage });
-	DCity[NodeC].setScale({ 0.1, 0.1 });
+	DCity[NodeC].setPosition({ ximage-25,yimage-25 });
+	DCity[NodeC].setScale({ 0.075, 0.075 });
 	NodeC++;
 }
 
