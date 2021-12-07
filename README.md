@@ -2,8 +2,7 @@
 Program ini dibuat dengan menggunakan bahasa C++ dan Library SFML
 
 ## SFML
-Simple and Fast Multimedia Library adalah perpustakaan pengembangan perangkat lunak lintas platform yang dirancang untuk menyediakan antarmuka pemrograman aplikasi sederhana ke berbagai komponen multimedia di komputer menggunakan C++.
-
+Simple and Fast Multimedia Library adalah perpustakaan pengembangan perangkat lunak lintas platform yang dirancang untuk menyediakan antarmuka pemrograman aplikasi sederhana ke berbagai komponen multimedia di komputer menggunakan C++. Untuk info mengenai library ini dapat mengakses https://www.sfml-dev.org/
 ## Assets
 
 ### Building
