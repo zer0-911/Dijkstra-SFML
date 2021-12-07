@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Text.h"
 #include "City.h"
+#include "JarakTerdekat.h"
 
 int main()
 {
@@ -26,6 +27,7 @@ int main()
 		
 
 	Textbox text1(20, sf::Color::White, false), text2(20, sf::Color::White, false), text3(20, sf::Color::White, false), text4(20, sf::Color::White, false), text5(20, sf::Color::White, false);
+	Textbox text6(20, sf::Color::White, false), text7(20, sf::Color::White, false);
 	text1.setPosition({ 10, 25 });
 	text1.setLimit(true, 6);
 	text1.setFont(font);
@@ -45,6 +47,14 @@ int main()
 	text5.setPosition({ 300, 75 });
 	text5.setLimit(true, 6);
 	text5.setFont(font);
+
+	text6.setPosition({ 600, 25 });
+	text6.setLimit(true, 6);
+	text6.setFont(font);
+
+	text7.setPosition({ 600, 75 });
+	text7.setLimit(true, 6);
+	text7.setFont(font);
 
 	Button btn1("Masuk", { 60, 20 }, 14, sf::Color::Green, sf::Color::Black);
 	btn1.setFont(font);
@@ -92,8 +102,7 @@ int main()
 	help7.setPosition({ 600, 60 });
 	help7.setFont(font);
 	City city;
-
-
+	JarakTerdekat djikstra;
 	while (window.isOpen()) {
 
 		sf::Event Event;
@@ -104,6 +113,8 @@ int main()
 			text3.setSelected(false);
 			text4.setSelected(false);
 			text5.setSelected(false);
+			text6.setSelected(false);
+			text7.setSelected(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			text1.setSelected(false);
@@ -111,6 +122,8 @@ int main()
 			text3.setSelected(false);
 			text4.setSelected(false);
 			text5.setSelected(false);
+			text6.setSelected(false);
+			text7.setSelected(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
 		{
@@ -119,6 +132,8 @@ int main()
 			text3.setSelected(true);
 			text4.setSelected(false);
 			text5.setSelected(false);
+			text6.setSelected(false);
+			text7.setSelected(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
 		{
@@ -127,6 +142,8 @@ int main()
 			text3.setSelected(false);
 			text4.setSelected(true);
 			text5.setSelected(false);
+			text6.setSelected(false);
+			text7.setSelected(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
 		{
@@ -135,6 +152,28 @@ int main()
 			text3.setSelected(false);
 			text4.setSelected(false);
 			text5.setSelected(true);
+			text6.setSelected(false);
+			text7.setSelected(false);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
+		{
+			text1.setSelected(false);
+			text2.setSelected(false);
+			text3.setSelected(false);
+			text4.setSelected(false);
+			text5.setSelected(false);
+			text6.setSelected(true);
+			text7.setSelected(false);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F4))
+		{
+			text1.setSelected(false);
+			text2.setSelected(false);
+			text3.setSelected(false);
+			text4.setSelected(false);
+			text5.setSelected(false);
+			text6.setSelected(false);
+			text7.setSelected(true);
 		}
 
 		//Event Loop:
@@ -149,6 +188,8 @@ int main()
 				text3.typedOn(Event);
 				text4.typedOn(Event);
 				text5.typedOn(Event);
+				text6.typedOn(Event);
+				text7.typedOn(Event);
 			case sf::Event::MouseMoved:
 				if (btn1.isMouseOver(window)) {
 					btn1.setBackColor(sf::Color::Magenta);
@@ -181,6 +222,7 @@ int main()
 					{
 						tx1.input(z, x, y);
 						city.img(x, y);
+
 					}
 					else
 					{
@@ -192,6 +234,12 @@ int main()
 					std::string namaasal = text4.getText();
 					std::string namatujuan = text5.getText();
 					tx1.caritujuan(namaasal, namatujuan);
+
+				}
+				else if (btn3.isMouseOver(window)) {
+					std::string namaasaldj = text6.getText();
+					std::string namatujuandj = text7.getText();
+					tx1.jarakTerdekat(namaasaldj, namatujuandj);
 				}
 			}
 		}
@@ -208,6 +256,8 @@ int main()
 		text3.drawTo(window);
 		text4.drawTo(window);
 		text5.drawTo(window);
+		text6.drawTo(window);
+		text7.drawTo(window);
 		tx1.drawToTx(window);
 		city.drawToImg(window);
 		btn1.drawTo(window);

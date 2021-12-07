@@ -1,16 +1,17 @@
 #include "Text.h"
-
 void Text::input(std::string nama, std::string x, std::string y)
 {
 	//std::cout << Node;
 	
 	
 	this->tabel();
+	
 	dKotaUtama.kota[Node].nama = nama;
 	dKotaUtama.kota[Node].xs = x;
 	dKotaUtama.kota[Node].x = std::stof(x);
 	dKotaUtama.kota[Node].ys = y;
 	dKotaUtama.kota[Node].y = std::stof(y);
+	hubung.MFDjikstra(nama, dKotaUtama.kota[Node].x, dKotaUtama.kota[Node].y);
 	//std::cout << dKotaUtama.kota[Node].x;
 	text[Node].setString(dKotaUtama.kota[Node].nama);
 	text[Node].setPosition({ xsize,ysize });
@@ -78,7 +79,7 @@ void Text::caritujuan(std::string namaasal, std::string namatujuan)
 	//Permisalan jika posisi TRUE
 	if ((posD >= 0) && (posK >= 0))
 	{
-		hubung.Hubungkan(dKotaUtama.kota[posD].x, dKotaUtama.kota[posD].y, dKotaUtama.kota[posK].x, dKotaUtama.kota[posK].y, namaasal, namatujuan);
+		hubung.Hubungkan(dKotaUtama.kota[posD].x, dKotaUtama.kota[posD].y, dKotaUtama.kota[posK].x, dKotaUtama.kota[posK].y, namaasal, namatujuan, Node);
 	}
 }
 int Text::cari(std::string carikota)
@@ -100,6 +101,10 @@ int Text::cari(std::string carikota)
 	}
 	//mengembalikan variabel pos
 	return pos;
+}
+void Text::jarakTerdekat(std::string AsalK, std::string TujuanK)
+{
+	hubung.DjikstraOn(AsalK, TujuanK);
 }
 void Text::setFontTx(sf::Font& fonts)
 {

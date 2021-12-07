@@ -5,8 +5,6 @@
 #include <Window.hpp>
 #include <string>
 #include "Hubung.h"
-
-
 #define Maksimum 100
 class Text 
 {
@@ -36,6 +34,7 @@ public:
 	void tabel();
 	void caritujuan(std::string namaasal, std::string namatujuan);
 	int cari(std::string carikota);
+	void jarakTerdekat(std::string AsalK, std::string TujuanK);
 private:
 	Hubung hubung;
 	float xsize = 25, ysize =210;
