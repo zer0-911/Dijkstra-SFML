@@ -10,3 +10,6 @@ Building disini menggunakan 2D Sprites dari https://craftpix.net/freebies/free-t
 
 ### Font
 Menggunakan font arial dari https://www.downloadfonts.io/arial-font-family-free/
+
+### Problem To Fix
+Jalan di Djikstra Versi ini masih berbentuk 2 jalur ketika dihubungkan
