@@ -8,7 +8,7 @@ void JarakTerdekat::Append(std::string sNamaKota, float x, float y)
     d.sNamaKota = sNamaKota;
     d.x = x;
     d.y = y;
-    std::cout << d.sNamaKota << " " << d.x << " " << d.y << "\n";
+    //std::cout << d.sNamaKota << " " << d.x << " " << d.y << "\n";
     lKota.push_back(d);
 }
 
@@ -28,7 +28,24 @@ int JarakTerdekat::CariIndeksKota(std::string sNamaKota)
     return ikota;
 }
 
-bool JarakTerdekat::Hubung(std::string sDari, std::string sKe, float Jarak)
+int JarakTerdekat::CariIndekJarak(std::string kotaasal, std::string kotatujuan)
+{
+    //std::cout << kotaasal << kotatujuan;
+    int jkota = -1;
+    for (int i = 0; i <= jaraknya;i++)
+    {
+        std::cout << jarakkota[i].nama1 << jarakkota[i].nama1;
+        if ((jarakkota[i].nama1 == kotaasal) && (jarakkota[i].nama2 == kotatujuan))
+        {
+            jkota = i;
+            break;
+        }
+
+    }
+    return jkota;
+}
+
+bool JarakTerdekat::Hubung(std::string sDari, std::string sKe, float Jarak, float jarakasli)
 {
     //std::cout << Jarak; pengecekan
     int n1, n2;
@@ -41,6 +58,11 @@ bool JarakTerdekat::Hubung(std::string sDari, std::string sKe, float Jarak)
         d.sKotaNext = sKe;
         d.jarak = Jarak;
         lKota[n1].lKotaNext.push_back(d);
+        jarakkota[jaraknya].nama1 = sDari;
+        jarakkota[jaraknya].nama2 = sKe;
+        //std::cout << jarakasli;
+        jarakkota[jaraknya].jarakasli1 = jarakasli;
+        jaraknya++;
     }
     else
     {
@@ -77,7 +99,7 @@ void JarakTerdekat::djikstra(std::string sKota, float TK)
 
 void JarakTerdekat::CariRute(std::string sKota)
 {
-    std::cout << sKota << "-";
+    //std::cout << sKota << "-";
     kotalewat[kotai] = sKota;
     //std::cout << kotai;
     kotai++;
@@ -87,6 +109,7 @@ void JarakTerdekat::CariRute(std::string sKota)
 
     if (TK == 0)
     {
+        masukteks();
         masukline();
         return;
     }
@@ -115,6 +138,9 @@ void JarakTerdekat::line(float x1, float y1, float x2, float y2)
 
 void JarakTerdekat::reset()
 {
+    totaljarak = 0;
+    xteks = 800;
+    banyakteks = 0;
     kotai = 0;
     lineterdekat.clear();
 }
@@ -125,17 +151,54 @@ void JarakTerdekat::masukline()
     {        
        int nline1 = CariIndeksKota(kotalewat[i]);
        int nline2 = CariIndeksKota(kotalewat[i + 1]);
-       std::cout << lKota[nline1].x <<" CEK "<< lKota[nline2].x << "BATAS";
+       int njarak = CariIndekJarak(kotalewat[i], kotalewat[i + 1]);
+       //std::cout << lKota[nline1].x <<" CEK "<< lKota[nline2].x << "BATAS";
        line(lKota[nline1].x, lKota[nline1].y, lKota[nline2].x, lKota[nline2].y);
+       if (njarak >= 0)
+       {
+           totaljarak = totaljarak + jarakkota[njarak].jarakasli1;
+       }
     }
+    masukteksjarak();
+}
+   
+
+void JarakTerdekat::masukteks()
+{
+    if (!font.loadFromFile("Assets/Font/arial.ttf"))
+    {
+        std::cout << "Font tidak ditemukan\n";
+    }
+    for (size_t teksi = 0; teksi < kotai; teksi++)
+    {
+        //std::cout <<" "<< kotalewat[teksi] << xteks <<"\n";
+        teks[banyakteks].setFont(font);
+        teks[banyakteks].setString(kotalewat[teksi]);
+        teks[banyakteks].setPosition({ xteks, 25 });
+        teks[banyakteks].setCharacterSize(20);
+        xteks=xteks+40;
+        banyakteks++;
+    }
+}
+
+void JarakTerdekat::masukteksjarak()
+{
+    totaljarakfix = std::to_string(totaljarak);
+    teksjarak.setFont(font);
+    teksjarak.setString(totaljarakfix);
+    teksjarak.setPosition({ 800, 55 });
+    teksjarak.setCharacterSize(20);
 }
 
 void JarakTerdekat::drawlineterdekat(sf::RenderWindow& window)
 {
+    window.draw(teksjarak);
+    for (size_t i = 0; i < banyakteks; i++)
+    {
+        window.draw(teks[i]);
+    }
     for (size_t i = 0; i < lineterdekat.size(); i++)
     {
         window.draw(lineterdekat[i]);
     }
 }
-
-

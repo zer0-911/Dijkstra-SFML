@@ -21,10 +21,10 @@ void Hubung::Hubungkan(float x1, float y1, float x2, float y2, std::string kotaa
     B = (y2 - y1) * (y2 - y1);
     hasil = sqrt(A + B);
     hasil2 = std::round(hasil * 100);
-    std::cout << kotaasal << " " << kotatujuan << " " << hasil2 << "\n";
+    std::cout << kotaasal << " " << kotatujuan << " " << hasil << "\n";
     bool b;
-    b = djikstra.Hubung(kotaasal, kotatujuan, hasil2);
-    b = djikstra.Hubung(kotatujuan, kotaasal, hasil2);
+    b = djikstra.Hubung(kotaasal, kotatujuan, hasil2, hasil);
+    b = djikstra.Hubung(kotatujuan, kotaasal, hasil2, hasil);
     jarak[banyak] = std::to_string(hasil);
     xtengah = (x1 + x2) / 2;
     ytengah = (y1 + y2) / 2;
