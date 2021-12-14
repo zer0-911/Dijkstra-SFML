@@ -10,6 +10,7 @@ Building dan Background disini menggunakan 2D Sprites dari https://craftpix.net/
 
 ### Font
 Menggunakan font Arial dari https://www.downloadfonts.io/arial-font-family-free/
+
 Menggunakan font Bebas Neue dari https://www.dafont.com/bebas-neue.font
 
 ### Problem To Fix
