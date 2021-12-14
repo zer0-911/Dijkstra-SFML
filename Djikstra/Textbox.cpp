@@ -2,11 +2,10 @@
 
 Textbox::Textbox(int size, sf::Color color, bool sel)
 {
+	//Menentukan ukuran teks, warna teks, dan teks yang aktif
 	textbox.setCharacterSize(size);
 	textbox.setFillColor(color);
 	isSelected = sel;
-
-	// Check if the textbox is selected upon creation and display it accordingly:
 	if (isSelected)
 		textbox.setString("_");
 	else
@@ -15,21 +14,25 @@ Textbox::Textbox(int size, sf::Color color, bool sel)
 
 void Textbox::setFont(sf::Font& fonts)
 {
+	//Menentukan font yang dipakai
 	textbox.setFont(fonts);
 }
 
 void Textbox::setPosition(sf::Vector2f point)
 {
+	//Mentukan posisi dari teksbox
 	textbox.setPosition(point);
 }
 
 void Textbox::setLimit(bool ToF)
 {
+	//kondisi ketika true
 	hasLimit = ToF;
 }
 
 void Textbox::setLimit(bool ToF, int lim)
 {
+	//kondisi ketika memiliki limit
 	hasLimit = ToF;
 	limit = lim - 1;
 }
@@ -37,8 +40,7 @@ void Textbox::setLimit(bool ToF, int lim)
 void Textbox::setSelected(bool sel)
 {
 	isSelected = sel;
-
-	// If not selected, remove the '_' at the end:
+	// Jika tidak dipilih, hapus '_' di akhir
 	if (!sel) {
 		std::string t = text.str();
 		std::string newT = "";
@@ -51,32 +53,35 @@ void Textbox::setSelected(bool sel)
 
 std::string Textbox::getText()
 {
+	//Mengembalikan atau menyimpan kata kata yang diinputkan
 	return text.str();
 }
 
 void Textbox::drawTo(sf::RenderWindow& window)
 {
+	//Menggambar teksbox
 	window.draw(textbox);
 }
 
 void Textbox::typedOn(sf::Event input)
 {
+	//Ketika teksbox posisi select TRUE
 	if (isSelected) {
 		int charTyped = input.text.unicode;
 
-		// Only allow normal inputs:
+		// Hanya izinkan input normal yaitu sampai 128
 		if (charTyped < 128) {
 			if (hasLimit) {
-				// If there's a limit, don't go over it:
+				// Jika kondisia ada batas, tidak bisa melewatinya
 				if (text.str().length() <= limit) {
 					inputLogic(charTyped);
 				}
-				// But allow for char deletions:
+				// kondisi ketika mengizinkan penghapusan karakter
 				else if (text.str().length() > limit && charTyped == DELETE_KEY) {
 					deleteLastChar();
 				}
 			}
-			// If no limit exists, just run the function:
+			// Jika tidak ada batasan, jalankan saja fungsinya
 			else {
 				inputLogic(charTyped);
 			}
@@ -86,6 +91,7 @@ void Textbox::typedOn(sf::Event input)
 
 void Textbox::deleteLastChar()
 {
+	//Menghapus karakter
 	std::string t = text.str();
 	std::string newT = "";
 	for (int i = 0; i < t.length() - 1; i++) {
@@ -98,16 +104,16 @@ void Textbox::deleteLastChar()
 
 void Textbox::inputLogic(int charTyped)
 {
-	// If the key pressed isn't delete, or the two selection keys, then append the text with the char:
+	// Jika tombol yang ditekan tidak tombol hapus, atau dua tombol lain tambahkan teks dengan karakter
 	if (charTyped != DELETE_KEY && charTyped != ENTER_KEY && charTyped != ESCAPE_KEY) {
 		text << static_cast<char>(charTyped);
 	}
-	// If the key is delete, then delete the char:
+	// Jika ditekan tombol hapus, maka char akan dihapus
 	else if (charTyped == DELETE_KEY) {
 		if (text.str().length() > 0) {
 			deleteLastChar();
 		}
 	}
-	// Set the textbox text:
+	// Setel teks kotak teks
 	textbox.setString(text.str() + "_");
 }

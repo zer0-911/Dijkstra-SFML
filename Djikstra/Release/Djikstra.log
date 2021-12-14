@@ -1,31 +1,13 @@
 ﻿  City.cpp
-D:\Data\VS\Djikstra\Djikstra\City.cpp(54,40): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\Data\VS\Djikstra\Djikstra\City.cpp(60,40): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\Data\VS\Djikstra\Djikstra\City.cpp(60,20): warning C4018: '<': signed/unsigned mismatch
-  Hubung.cpp
-D:\Data\VS\Djikstra\Djikstra\Hubung.cpp(23,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Data\VS\Djikstra\Djikstra\Hubung.cpp(26,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Data\VS\Djikstra\Djikstra\Hubung.cpp(27,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  JarakTerdekat.cpp
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(7,24): warning C4305: '=': truncation from '__int64' to 'float'
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(18,23): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(76,22): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(92,23): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(116,23): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(121,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(150,26): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(172,34): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\JarakTerdekat.cpp(196,26): warning C4018: '<': signed/unsigned mismatch
-  Main.cpp
-  Text.cpp
-D:\Data\VS\Djikstra\Djikstra\Text.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
-D:\Data\VS\Djikstra\Djikstra\Text.cpp(92,19): warning C4018: '<=': signed/unsigned mismatch
+D:\Data\VS\Djikstra\Djikstra\City.cpp(72,20): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  21 of 471 functions ( 4.5%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    31 functions had inline decision re-evaluated but remain unchanged
+  0 of 474 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Djikstra.vcxproj -> D:\Data\VS\Djikstra\Release\Djikstra.exe

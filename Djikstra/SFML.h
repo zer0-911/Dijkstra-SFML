@@ -4,3 +4,5 @@
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
+
+//Header ini untuk memanggil library dari SFML

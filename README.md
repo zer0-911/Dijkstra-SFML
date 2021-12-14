@@ -6,10 +6,11 @@ Simple and Fast Multimedia Library adalah perpustakaan pengembangan perangkat lu
 ## Assets
 
 ### Building
-Building disini menggunakan 2D Sprites dari https://craftpix.net/freebies/free-tropical-medieval-city-2d-tileset/
+Building dan Background disini menggunakan 2D Sprites dari https://craftpix.net/freebies/free-tropical-medieval-city-2d-tileset/
 
 ### Font
-Menggunakan font arial dari https://www.downloadfonts.io/arial-font-family-free/
+Menggunakan font Arial dari https://www.downloadfonts.io/arial-font-family-free/
+Menggunakan font Bebas Neue dari https://www.dafont.com/bebas-neue.font
 
 ### Problem To Fix
 Jalan di Djikstra Versi ini masih berbentuk 2 jalur ketika dihubungkan

@@ -1,9 +1,15 @@
 #include "City.h"
 #include "Text.h"
 
-void City::img(std::string ximg, std::string yimg)
+void City::img(std::string teks, std::string ximg, std::string yimg)
 {
+	if (!fontcity.loadFromFile("Assets/Font/BebasNeue-Regular.otf"))
+	{
+		std::cout << "Font tidak ditemukan\n";
+	}
+	//variabel x yang berisi angka random untuk menentukan gambar yang dipakai
 	int x = rand() % 6;
+	//Posisi dari gambar yang dipakai
 	ximage = std::stof(ximg);
 	yimage = std::stof(yimg);
 	if (x == 1)
@@ -48,17 +54,24 @@ void City::img(std::string ximg, std::string yimg)
 			printf("error gambar");
 		}
 	}
-	
+	//Menentukan kota. Posisi, ukuran, dan gambar yang dipakai
 	DCity[NodeC].setTexture(texture[NodeC]);
-	DCity[NodeC].setPosition({ ximage-25,yimage-25 });
-	DCity[NodeC].setScale({ 0.075, 0.075 });
+	DCity[NodeC].setPosition({ ximage-22,yimage-25 });
+	DCity[NodeC].setScale({ 0.050, 0.050 });
+	tekskota[NodeC].setFillColor(sf::Color::Black);
+	tekskota[NodeC].setFont(fontcity);
+	tekskota[NodeC].setCharacterSize(14);
+	tekskota[NodeC].setString(teks);
+	tekskota[NodeC].setPosition({ ximage, yimage - 45 });
 	NodeC++;
 }
 
 void City::drawToImg(sf::RenderWindow& window)
 {
+	//Menggambar dengan mengulangi di setiap kota
 	for (int i = 0; i < NodeC; i++)
 	{
+		window.draw(tekskota[i]);
 		window.draw(DCity[i]);
 	}
 }
