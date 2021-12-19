@@ -1,4 +1,4 @@
-# Djikstra-App
+# Dijkstra-App
 Program ini dibuat dengan menggunakan bahasa C++ dan Library SFML
 
 ## SFML
@@ -10,7 +10,8 @@ Building dan Background disini menggunakan 2D Sprites dari https://craftpix.net/
 
 ### Font
 Menggunakan font Arial dari https://www.downloadfonts.io/arial-font-family-free/
+
 Menggunakan font Bebas Neue dari https://www.dafont.com/bebas-neue.font
 
 ### Problem To Fix
-Jalan di Djikstra Versi ini masih berbentuk 2 jalur ketika dihubungkan
+Jalan di Dijkstra Versi ini masih berbentuk 2 jalur ketika dihubungkan
