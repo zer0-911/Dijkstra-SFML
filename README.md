@@ -1,4 +1,4 @@
-# Dijkstra-App
+# Dijkstra
 Program ini dibuat dengan menggunakan bahasa C++ dan Library SFML
 
 ## SFML
