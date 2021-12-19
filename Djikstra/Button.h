@@ -10,22 +10,22 @@ class Button
 		//Deklarasi Fungsi untuk mengambil font yang sudah dimasukkan
 		void setFont(sf::Font& fonts);
 		//Deklarasi fungsi untuk memberikan warna pada button
-		void setBackColor(sf::Color bgcolor);
+		void setWarnaBelakang(sf::Color bgcolor);
 		//Deklarasi Fungsi untuk memberi warna teks didalam button
-		void setTextColor(sf::Color textcolor);
+		void setWarnaTeks(sf::Color textcolor);
 		//Deklarasi Fungsi untuk menentukan posisi dari Button di window yang terbentuk
-		void setPosition(sf::Vector2f point);
+		void setPosisi(sf::Vector2f point);
 		//Deklarasi Fungsi untuk menggambar button
 		void drawTo(sf::RenderWindow& window);
 		//Deklrasi Fungsi untuk kondisi ketika pointer mouse berada didalam button
-		bool isMouseOver(sf::RenderWindow& window);
+		bool MouseDiatasButton(sf::RenderWindow& window);
 	private:
 		//Pemanggilan kelas untuk membuat persegi
 		sf::RectangleShape button;
 		//Pemanggilan kelas untuk membuat teks
 		sf::Text text;
 		//Panjang dan lebar button
-		int btnWidth;
-		int btnHeight;
+		int btnLebar;
+		int btnTinggi;
 };
 

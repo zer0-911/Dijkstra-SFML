@@ -18,9 +18,9 @@ void Textbox::setFont(sf::Font& fonts)
 	textbox.setFont(fonts);
 }
 
-void Textbox::setPosition(sf::Vector2f point)
+void Textbox::setPosisi(sf::Vector2f point)
 {
-	//Mentukan posisi dari teksbox
+	//Menentukan posisi dari teksbox
 	textbox.setPosition(point);
 }
 
@@ -37,7 +37,7 @@ void Textbox::setLimit(bool ToF, int lim)
 	limit = lim - 1;
 }
 
-void Textbox::setSelected(bool sel)
+void Textbox::setTerpilih(bool sel)
 {
 	isSelected = sel;
 	// Jika tidak dipilih, hapus '_' di akhir
@@ -74,22 +74,22 @@ void Textbox::typedOn(sf::Event input)
 			if (hasLimit) {
 				// Jika kondisia ada batas, tidak bisa melewatinya
 				if (text.str().length() <= limit) {
-					inputLogic(charTyped);
+					inputL(charTyped);
 				}
 				// kondisi ketika mengizinkan penghapusan karakter
 				else if (text.str().length() > limit && charTyped == DELETE_KEY) {
-					deleteLastChar();
+					deleteCharterakhir();
 				}
 			}
 			// Jika tidak ada batasan, jalankan saja fungsinya
 			else {
-				inputLogic(charTyped);
+				inputL(charTyped);
 			}
 		}
 	}
 }
 
-void Textbox::deleteLastChar()
+void Textbox::deleteCharterakhir()
 {
 	//Menghapus karakter
 	std::string t = text.str();
@@ -102,7 +102,7 @@ void Textbox::deleteLastChar()
 	textbox.setString(text.str() + "_");
 }
 
-void Textbox::inputLogic(int charTyped)
+void Textbox::inputL(int charTyped)
 {
 	// Jika tombol yang ditekan tidak tombol hapus, atau dua tombol lain tambahkan teks dengan karakter
 	if (charTyped != DELETE_KEY && charTyped != ENTER_KEY && charTyped != ESCAPE_KEY) {
@@ -111,7 +111,7 @@ void Textbox::inputLogic(int charTyped)
 	// Jika ditekan tombol hapus, maka char akan dihapus
 	else if (charTyped == DELETE_KEY) {
 		if (text.str().length() > 0) {
-			deleteLastChar();
+			deleteCharterakhir();
 		}
 	}
 	// Setel teks kotak teks

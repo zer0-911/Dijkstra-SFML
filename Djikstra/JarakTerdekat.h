@@ -16,11 +16,11 @@ private:
     //Struct untuk menyimpan kota
     struct tKota
     {
-        float TK;
+        float TitikKota;
         float x;
         float y;
         std::string sNamaKota;
-        std::vector<struct tKotaNext> lKotaNext;
+        std::vector<struct tKotaNext> Kota2Lanjut;
     };
     //Struct untuk menyimpan jarak kota
     struct TKotaJarak
@@ -30,7 +30,7 @@ private:
         float jarakasli1;
     };
     TKotaJarak jarakkota[99];
-    std::vector<tKota> lKota;
+    std::vector<tKota> DjikstraKota;
     std::vector<sf::VertexArray> lineterdekat;
     std::string kotalewat[99];
     int kotai = 0;
@@ -43,7 +43,7 @@ private:
     float xteks = 900;
 public:
     //Deklarasi fungsi untuk memasukkan kota
-    void Append(std::string sNamaKota, float x, float y);
+    void DataMasuk(std::string NamaKota, float x, float y);
     //Deklarasi  fungsi untuk mencari indeks  kota
     int CariIndeksKota(std::string sNamaKota);
     //Deklarasi fungsi untuk mencari indeks jarak antar kota
@@ -51,7 +51,7 @@ public:
     //Deklarasi fungsi untuk menghubungkan
     bool Hubung(std::string sDari, std::string sKe, float Jarak, float jarakasli);
     //Deklarasi fungsi untuk mengisi TK 
-    void InitDjikstra();
+    void InitFungsiDjikstra();
     //Deklarasi fungsi untuk mencari kota tujuan
     void djikstra(std::string sKota, float TK);
     //Deklarasi fungsi untuk mencari kota asal

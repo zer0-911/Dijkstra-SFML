@@ -42,17 +42,17 @@ void Hubung::Hubungkan(float x1, float y1, float x2, float y2, std::string kotaa
     banyak = banyak + 1;
 }
 
-void Hubung::MFDjikstra(std::string sNamaKota, float x, float y)
+void Hubung::MFDjikstra(std::string NamaKota, float x, float y)
 {
     //Memanggil fungsi di kelas JarakTerdekat
-    djikstra.Append(sNamaKota, x, y);
+    djikstra.DataMasuk(NamaKota, x, y);
 }
 
 void Hubung::DjikstraOn(std::string Asal, std::string Tujuan)
 {
     //Memanggil fungsi di kelas JarakTerdekat
     djikstra.reset();
-    djikstra.InitDjikstra();
+    djikstra.InitFungsiDjikstra();
     djikstra.djikstra(Tujuan, 0);
     djikstra.CariRute(Asal);
 }

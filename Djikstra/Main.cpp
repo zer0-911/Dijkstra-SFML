@@ -29,6 +29,11 @@ int main()
 	{
 		std::cout << "Font tidak ditemukan\n";
 	}
+	sf::Font font1;
+	if (!font1.loadFromFile("Assets/Font/Blackboard.ttf"))
+	{
+		std::cout << "Font tidak ditemukan\n";
+	}
 	sf::Texture BackgroundTexture;
 	sf::Sprite background;
 	sf::Vector2u TextureSize;  //Deklarasi penyimpanan ukuran texture
@@ -56,47 +61,47 @@ int main()
 	Textbox text1(20, sf::Color::Black, false), text2(20, sf::Color::Black, false), text3(20, sf::Color::Black, false), text4(20, sf::Color::Black, false), text5(20, sf::Color::Black, false);
 	Textbox text6(20, sf::Color::Black, false), text7(20, sf::Color::Black, false);
 	//Memanggil beberapa fungsi yang terdapat di class Textbox
-	text1.setPosition({ 15, 25 });
+	text1.setPosisi({ 15, 25 });
 	text1.setLimit(true, 6);
 	text1.setFont(font);
 
-	text2.setPosition({ 15, 75 });
+	text2.setPosisi({ 15, 75 });
 	text2.setLimit(true, 4);
 	text2.setFont(font);
 
-	text3.setPosition({ 15, 125 });
+	text3.setPosisi({ 15, 125 });
 	text3.setLimit(true, 4);
 	text3.setFont(font);
 
-	text4.setPosition({ 305, 25 });
+	text4.setPosisi({ 305, 25 });
 	text4.setLimit(true, 6);
 	text4.setFont(font);
 
-	text5.setPosition({ 305, 75 });
+	text5.setPosisi({ 305, 75 });
 	text5.setLimit(true, 6);
 	text5.setFont(font);
 
-	text6.setPosition({ 605, 25 });
+	text6.setPosisi({ 605, 25 });
 	text6.setLimit(true, 6);
 	text6.setFont(font);
 
-	text7.setPosition({ 605, 75 });
+	text7.setPosisi({ 605, 75 });
 	text7.setLimit(true, 6);
 	text7.setFont(font);
 	//Memanggil class dan menamai class Button yang digunakan untuk tempat klik dari mouse
 	//Memnaggil beberapa fungsi yang ada di class button
 	Button btn1("Cetak", { 60, 30 }, 14, sf::Color::White, sf::Color::Black);
 	btn1.setFont(font);
-	btn1.setPosition({ 125, 125 });
+	btn1.setPosisi({ 125, 125 });
 	size_t x = 0;
 
 	Button btn2("Hubung", { 60, 30 }, 14, sf::Color::White, sf::Color::Black);
 	btn2.setFont(font);
-	btn2.setPosition({ 400, 125 });
+	btn2.setPosisi({ 400, 125 });
 
 	Button btn3("\tJarak \n Terdekat", { 80, 40 }, 14, sf::Color::White, sf::Color::Black);
 	btn3.setFont(font);
-	btn3.setPosition({ 700, 115 });
+	btn3.setPosisi({ 700, 115 });
 	//Memanggil kelas Text dan menamainya, kelas ini berfungsi untuk menyimpan dan melakukan berbagai proses
 	//Mulai dari menyimpan, menghubungkan, menghitung jarak, dll.
 	Text tx1;
@@ -150,78 +155,82 @@ int main()
 	help9.setFont(font);
 	//Memanggil kelas City untuk menggambar sprite yang berbentuk kota
 	City city;
+	
+	sf::Text warning;
+	warning.setFillColor(sf::Color::Black);
+	warning.setFont(font1);
 	//Looping
 	while (window.isOpen()) {
 
 		sf::Event Event;
 		//Kondisi ketika keyboard ditekan, jika tertulis true berarti akan mengaktifkan textbox tersebut
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			text1.setSelected(true);
-			text2.setSelected(false);
-			text3.setSelected(false);
-			text4.setSelected(false);
-			text5.setSelected(false);
-			text6.setSelected(false);
-			text7.setSelected(false);
+			text1.setTerpilih(true);
+			text2.setTerpilih(false);
+			text3.setTerpilih(false);
+			text4.setTerpilih(false);
+			text5.setTerpilih(false);
+			text6.setTerpilih(false);
+			text7.setTerpilih(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			text1.setSelected(false);
-			text2.setSelected(true);
-			text3.setSelected(false);
-			text4.setSelected(false);
-			text5.setSelected(false);
-			text6.setSelected(false);
-			text7.setSelected(false);
+			text1.setTerpilih(false);
+			text2.setTerpilih(true);
+			text3.setTerpilih(false);
+			text4.setTerpilih(false);
+			text5.setTerpilih(false);
+			text6.setTerpilih(false);
+			text7.setTerpilih(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
 		{
-			text1.setSelected(false);
-			text2.setSelected(false);
-			text3.setSelected(true);
-			text4.setSelected(false);
-			text5.setSelected(false);
-			text6.setSelected(false);
-			text7.setSelected(false);
+			text1.setTerpilih(false);
+			text2.setTerpilih(false);
+			text3.setTerpilih(true);
+			text4.setTerpilih(false);
+			text5.setTerpilih(false);
+			text6.setTerpilih(false);
+			text7.setTerpilih(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
 		{
-			text1.setSelected(false);
-			text2.setSelected(false);
-			text3.setSelected(false);
-			text4.setSelected(true);
-			text5.setSelected(false);
-			text6.setSelected(false);
-			text7.setSelected(false);
+			text1.setTerpilih(false);
+			text2.setTerpilih(false);
+			text3.setTerpilih(false);
+			text4.setTerpilih(true);
+			text5.setTerpilih(false);
+			text6.setTerpilih(false);
+			text7.setTerpilih(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
 		{
-			text1.setSelected(false);
-			text2.setSelected(false);
-			text3.setSelected(false);
-			text4.setSelected(false);
-			text5.setSelected(true);
-			text6.setSelected(false);
-			text7.setSelected(false);
+			text1.setTerpilih(false);
+			text2.setTerpilih(false);
+			text3.setTerpilih(false);
+			text4.setTerpilih(false);
+			text5.setTerpilih(true);
+			text6.setTerpilih(false);
+			text7.setTerpilih(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
 		{
-			text1.setSelected(false);
-			text2.setSelected(false);
-			text3.setSelected(false);
-			text4.setSelected(false);
-			text5.setSelected(false);
-			text6.setSelected(true);
-			text7.setSelected(false);
+			text1.setTerpilih(false);
+			text2.setTerpilih(false);
+			text3.setTerpilih(false);
+			text4.setTerpilih(false);
+			text5.setTerpilih(false);
+			text6.setTerpilih(true);
+			text7.setTerpilih(false);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F4))
 		{
-			text1.setSelected(false);
-			text2.setSelected(false);
-			text3.setSelected(false);
-			text4.setSelected(false);
-			text5.setSelected(false);
-			text6.setSelected(false);
-			text7.setSelected(true);
+			text1.setTerpilih(false);
+			text2.setTerpilih(false);
+			text3.setTerpilih(false);
+			text4.setTerpilih(false);
+			text5.setTerpilih(false);
+			text6.setTerpilih(false);
+			text7.setTerpilih(true);
 		}
 
 		//Event Loop
@@ -242,52 +251,76 @@ int main()
 				//Event gerakan dari pointer mouse
 			case sf::Event::MouseMoved:
 				//Fungsi kondisi ketika pointer mouse berada di titik yang ditentukan maka akan berubah warna
-				if (btn1.isMouseOver(window)) {
-					btn1.setBackColor(sf::Color::Red);
+				if (btn1.MouseDiatasButton(window)) {
+					btn1.setWarnaBelakang(sf::Color::Red);
 				}
 				else {
-					btn1.setBackColor(sf::Color::White);
+					btn1.setWarnaBelakang(sf::Color::White);
 				}
-				if (btn2.isMouseOver(window)) {
-					btn2.setBackColor(sf::Color::Red);
-				}
-				else {
-					btn2.setBackColor(sf::Color::White);
-				}
-				if (btn3.isMouseOver(window)) {
-					btn3.setBackColor(sf::Color::Red);
+				if (btn2.MouseDiatasButton(window)) {
+					btn2.setWarnaBelakang(sf::Color::Red);
 				}
 				else {
-					btn3.setBackColor(sf::Color::White);
+					btn2.setWarnaBelakang(sf::Color::White);
+				}
+				if (btn3.MouseDiatasButton(window)) {
+					btn3.setWarnaBelakang(sf::Color::Red);
+				}
+				else {
+					btn3.setWarnaBelakang(sf::Color::White);
 				}
 				break;
 				//Fungsi ketika mouse diklik kiri dan berada di tempat yang sudah ditentukan
 			case sf::Event::MouseButtonPressed:
-				if (btn1.isMouseOver(window)) {
+				if (btn1.MouseDiatasButton(window)) {
 					std::string z = text1.getText();
 					std::string x = text2.getText();
 					std::string y = text3.getText();
 					float batasx = std::stof(x);
 					float batasy = std::stof(y);
-					if((batasx > 300) && (batasy > 300))
+					//Kondisi ketika kota memenuhi 
+					if((batasx >= 250) && (batasy >= 250)&&(batasx <= 1550)&& (batasy <= 850))
 					{
 						tx1.input(z, x, y);
 						city.img(z,x, y);
-
+						warning.setPosition({ 1470, 50 });
+						warning.setString("Data\nMasuk");
 					}
 					else
 					{
-						std::cout << "Koordinat X dan/atau Koordinat Y terlalu kecil, buat lebih dari x = 300 dan y = 300 \n";
+						if (batasx <= 250)
+						{
+							warning.setPosition({ 1470, 80 });
+							warning.setCharacterSize(20);
+							warning.setString("X <= 250");
+						}
+						else if (batasy <= 250)
+						{
+							warning.setPosition({ 1470, 80 });
+							warning.setCharacterSize(14);
+							warning.setString("X <= 250");
+						}
+						else if (batasx >= 1550)
+						{
+							warning.setPosition({ 1470, 80 });
+							warning.setCharacterSize(14);
+							warning.setString("X >= 1550");
+						}
+						else if (batasy >= 850)
+						{
+							warning.setPosition({ 1470, 80 });
+							warning.setCharacterSize(14);
+							warning.setString("Y >= 250");
+						}
 					}
-					
 				}
-				else if (btn2.isMouseOver(window)) {
+				else if (btn2.MouseDiatasButton(window)) {
 					std::string namaasal = text4.getText();
 					std::string namatujuan = text5.getText();
 					tx1.caritujuan(namaasal, namatujuan);
 
 				}
-				else if (btn3.isMouseOver(window)) {
+				else if (btn3.MouseDiatasButton(window)) {
 					std::string namaasaldj = text6.getText();
 					std::string namatujuandj = text7.getText();
 					tx1.jarakTerdekat(namaasaldj, namatujuandj);
@@ -319,6 +352,7 @@ int main()
 		btn1.drawTo(window);
 		btn2.drawTo(window);
 		btn3.drawTo(window);
+		window.draw(warning);
 		window.display();
 	}
 	return 0;

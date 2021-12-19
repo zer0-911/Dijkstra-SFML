@@ -16,13 +16,13 @@ public:
 	//Deklarasi fungsi untuk menentukan font yang dipakai
 	void setFont(sf::Font& fonts);
 	//Deklarasi fungsi untuk menentukan tempat teksbox
-	void setPosition(sf::Vector2f point);
+	void setPosisi(sf::Vector2f point);
 	//Deklarasi fungsi untuk menentukan terdapat limit atau tidak
 	void setLimit(bool ToF);
 	//Deklarasi fungsi untuk menentukan limit dari teksbox
 	void setLimit(bool ToF, int lim);
 	//Deklarasi fungsi untuk mengaktifkan textbox
-	void setSelected(bool sel);
+	void setTerpilih(bool sel);
 	//Untuk menyimpan teks yang sudah diinputkan
 	std::string getText();
 	//Deklarasi fungsi untuk menggambar teks ketikan
@@ -37,8 +37,8 @@ private:
 	bool hasLimit = false;
 	int limit = 0;
 	//Deklarasi fungsi untuk menghapus
-	void deleteLastChar();
+	void deleteCharterakhir();
 	//Deklarasi fungsi untuk kondisi ketika mengetik
-	void inputLogic(int charTyped);
+	void inputL(int charTyped);
 };
 
