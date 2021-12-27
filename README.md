@@ -16,5 +16,3 @@ Menggunakan font Bebas Neue dari https://www.dafont.com/bebas-neue.font
 ### Demo
 ![](Images/demo.gif)
 
-### Problem To Fix
-Jalan di Dijkstra Versi ini masih berbentuk 2 jalur ketika dihubungkan
