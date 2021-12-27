@@ -3,23 +3,20 @@
 void JarakTerdekat::DataMasuk(std::string NamaKota, float x, float y)
 {
     //Menyimpan nama dan koordinat
-    struct tKota masuk;
-    masuk.TitikKota = 100000000000;
-    masuk.sNamaKota = NamaKota;
-    masuk.x = x;
-    masuk.y = y;
-    DjikstraKota.push_back(masuk);
+    indekskota++;
+    Kota[indekskota].sNamaKota = NamaKota;
+    Kota[indekskota].x = x;
+    Kota[indekskota].y = y;
 }
 
 int JarakTerdekat::CariIndeksKota(std::string sNamaKota)
 {
     //Mencari indeks kota
     int poskota = -1;
-    for (int i = 0; i < DjikstraKota.size();i++)
+    for (int i = 0; i <= indekskota;i++)
     {
-        std::string s = DjikstraKota[i].sNamaKota;
         //Jika ketemu maka nilai pos kota berubah
-        if (sNamaKota.compare(s) == 0)
+        if (Kota[i].sNamaKota == sNamaKota)
         {
             poskota = i;
             break;
@@ -34,7 +31,7 @@ int JarakTerdekat::CariIndeksJarak(std::string kotaasal, std::string kotatujuan)
     int jkotaKetemu = -1;
     for (int i = 0; i <= jaraknya;i++)
     {
-        std::cout << jarakkota[i].nama1 << jarakkota[i].nama1;
+        //Kondisi ketika terdapat kesamaan isi dari variabel array masing masing
         if ((jarakkota[i].nama1 == kotaasal) && (jarakkota[i].nama2 == kotatujuan))
         {
             jkotaKetemu = i;
@@ -45,84 +42,69 @@ int JarakTerdekat::CariIndeksJarak(std::string kotaasal, std::string kotatujuan)
     return jkotaKetemu;
 }
 
-bool JarakTerdekat::Hubung(std::string DariKota, std::string KeKota, float Jarak, float jarakasli)
+void JarakTerdekat::Hubung(std::string DariKota, std::string KeKota, float Jarak, float jarakasli)
 {
     int Kota1, Kota2;
     Kota1 = CariIndeksKota(DariKota);
     Kota2 = CariIndeksKota(KeKota);
-    bool KotaKetemu = true;
-    //Menghubungkan kota agar masuk ke vector 
+    //Menghubungkan kota agar masuk ke array struct jarakkota
     if ((Kota1 >= 0) && (Kota2 >= 0))
     {
-        struct tKotaNext d;
-        d.KotaLanjutan = KeKota;
-        d.jarak = Jarak;
-        DjikstraKota[Kota1].Kota2Lanjut.push_back(d);
         jarakkota[jaraknya].nama1 = DariKota;
         jarakkota[jaraknya].nama2 = KeKota;
         jarakkota[jaraknya].jarakasli1 = jarakasli;
+        jarakkota[jaraknya].jarak = Jarak;
         jaraknya++;
     }
-    else
-    {
-        KotaKetemu = false;
-    }
-    return KotaKetemu;
 }
 
 void JarakTerdekat::InitFungsiDjikstra()
 {
     //Memasukkan nilai di array tersebut
-    for (int i = 0;i < DjikstraKota.size();i++)
+    for (int i = 0;i <= indekskota ;i++)
     {
-        DjikstraKota[i].TitikKota = 1000000000;
+        Kota[i].TitikKota = 1000000000;
+        Kota[i].kotaLanjutannyal.clear();
     }
 }
 
-void JarakTerdekat::djikstra(std::string sKota, float titikKota)
+void JarakTerdekat::djikstra(std::string kotaSel, float kedekatan, std::string awal, std::string tuju)
 {
-    int n = CariIndeksKota(sKota);
+    std::string KotaTe;
+    //Mangisi variabel n dan p dengan hasil pencarian awal dan tujuan dengan isi array struct yang ada
+    int n = CariIndeksKota(awal);
+    int p = CariIndeksKota(tuju);
     //Kondisi ketika titikKota sudah lebih dari nilai struct titikKota
-    if (titikKota > DjikstraKota[n].TitikKota)
+    if (kedekatan >= Kota[n].TitikKota)
     {
         return;
     }
-    //Penggunaan algoritma djikstra
-    DjikstraKota[n].TitikKota = titikKota;
-    for (int i = 0; i < DjikstraKota[n].Kota2Lanjut.size();i++)
+
+    Kota[n].TitikKota = kedekatan;
+    Kota[n].kotaLanjutannyal = kotaSel;
+    //Perulangan dimana saat kota == variabel awal maka akan kota nama2 akan disimpan di KotaTe
+    for (int i = 0; i <= jaraknya;i++)
     {
-        std::string LanjutK = DjikstraKota[n].Kota2Lanjut[i].KotaLanjutan;
-        float jarak = DjikstraKota[n].Kota2Lanjut[i].jarak;
-        djikstra(LanjutK, titikKota + jarak);
+        if (jarakkota[i].nama1 == awal) {
+            KotaTe = jarakkota[i].nama2;
+            float jarak = jarakkota[i].jarak;
+            djikstra(KotaTe + " " + kotaSel, kedekatan + jarak, KotaTe, tuju);
+        }
     }
 }
 
-void JarakTerdekat::CariRute(std::string DjKota)
+void JarakTerdekat::pencarianJalur(int Tujuan)
 {
-    //Memasukkan nilai dari DjKota ke array kotalewat
-    kotalewat[kotai] = DjKota;
-    kotai++;
+    std::string str = Kota[Tujuan].kotaLanjutannyal;
+    std::istringstream ss(str);
 
-    int n = CariIndeksKota(DjKota);
-    float TitikK = DjikstraKota[n].TitikKota;
-    //Kondisi ketika titikK memiliki nilai 0 
-    if (TitikK == 0)
+    std::string katakata; // untuk memasukkan setiap kata
+
+    while (ss >> katakata)
     {
-        masukteks();
-        masukline();
-        return;
-    }
-    //Perulangan untuk mencari kota terdekat
-    for (int i = 0; i < DjikstraKota[n].Kota2Lanjut.size();i++)
-    {
-        std::string snext = DjikstraKota[n].Kota2Lanjut[i].KotaLanjutan;
-        int Nnext = CariIndeksKota(snext);
-        float TKnext = DjikstraKota[Nnext].TitikKota;
-        int JarakNext = DjikstraKota[n].Kota2Lanjut[i].jarak;
-        if (JarakNext + TKnext == TitikK)
-        {
-            CariRute(snext);
-        }
+        // memasukkan kata
+        kotalewat[kotai] = katakata;
+        kotai++;
     }
 }
 
@@ -155,8 +137,8 @@ void JarakTerdekat::masukline()
         //Mencari indeks kota dan  indeks jarak sesuai dengan kota terdekat yang sudah dihasilkan
         int nline1 = CariIndeksKota(kotalewat[i]);
         int nline2 = CariIndeksKota(kotalewat[i + 1]);
-        int njarak = CariIndeksJarak(kotalewat[i], kotalewat[i + 1]);
-        line(DjikstraKota[nline1].x, DjikstraKota[nline1].y, DjikstraKota[nline2].x, DjikstraKota[nline2].y);
+        int njarak = CariIndeksJarak(kotalewat[i+1], kotalewat[i]);
+        line(Kota[nline1].x, Kota[nline1].y, Kota[nline2].x, Kota[nline2].y);
         if (njarak >= 0)
         {
             totaljarak = totaljarak + jarakkota[njarak].jarakasli1;
@@ -173,7 +155,8 @@ void JarakTerdekat::masukteks()
     {
         std::cout << "Font tidak ditemukan\n";
     }
-    for (size_t teksi = 0; teksi < kotai; teksi++)
+    //Membalik 
+    for (int teksi = kotai-1; teksi >= 0; teksi--)
     {
         //Membuat teks kota lewat
         teks[banyakteks].setFont(font);

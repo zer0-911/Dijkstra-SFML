@@ -12,7 +12,7 @@ int main()
 	sf::Image icon;
 	if (!icon.loadFromFile("Assets\\Icon\\decor_4.png"))
 	{
-		std::cout << "Gambar tidak ditemukan\n";
+		std::cout<< "Gambar tidak ditemukan\n";
 	}
 	//sf::RenderWindow digunakan untuk kelas modul grafis. lebih banyak fitur yang terkait dengan gambar 2D dengan modul grafis ini
 	sf::RenderWindow window;
@@ -279,7 +279,7 @@ int main()
 					float batasx = std::stof(x);
 					float batasy = std::stof(y);
 					//Kondisi ketika kota memenuhi 
-					if((batasx >= 250) && (batasy >= 250)&&(batasx <= 1550)&& (batasy <= 850))
+					if((batasx >= 250 - 250) && (batasy >= 250 - 250)&&(batasx <= 1550 - 250)&& (batasy <= 850 - 250))
 					{
 						tx1.input(z, x, y);
 						city.img(z,x, y);
@@ -288,29 +288,29 @@ int main()
 					}
 					else
 					{
-						if (batasx <= 250)
+						if (batasx <= 250 - 250)
 						{
 							warning.setPosition({ 1470, 80 });
 							warning.setCharacterSize(20);
-							warning.setString("X <= 250");
+							warning.setString("X <= 0");
 						}
-						else if (batasy <= 250)
+						else if (batasy <= 250 - 250)
 						{
 							warning.setPosition({ 1470, 80 });
 							warning.setCharacterSize(14);
-							warning.setString("X <= 250");
+							warning.setString("Y <= 0");
 						}
-						else if (batasx >= 1550)
+						else if (batasx >= 1550-250)
 						{
 							warning.setPosition({ 1470, 80 });
 							warning.setCharacterSize(14);
-							warning.setString("X >= 1550");
+							warning.setString("X >= 1300");
 						}
-						else if (batasy >= 850)
+						else if (batasy >= 850-250)
 						{
 							warning.setPosition({ 1470, 80 });
 							warning.setCharacterSize(14);
-							warning.setString("Y >= 250");
+							warning.setString("Y >= 600");
 						}
 					}
 				}

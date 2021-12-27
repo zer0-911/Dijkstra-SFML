@@ -10,7 +10,7 @@ void Text::input(std::string nama, std::string x, std::string y)
 	dKotaUtama.kota[Node].ys = y;
 	dKotaUtama.kota[Node].y = std::stof(y);
 	//Memanggil fungsi hubungkan pada class JarakTerdekat
-	hubung.MFDjikstra(nama, dKotaUtama.kota[Node].x, dKotaUtama.kota[Node].y);
+	hubung.MFDjikstra(nama, dKotaUtama.kota[Node].x+250, dKotaUtama.kota[Node].y+250);
 	//Menmasukkan apa saja yang ada di teks
 	text[Node].setString(dKotaUtama.kota[Node].nama);
 	text[Node].setPosition({ xsize,ysize });
@@ -94,7 +94,7 @@ void Text::caritujuan(std::string namaasal, std::string namatujuan)
 	//Permisalan jika posisi TRUE
 	if ((posD >= 0) && (posK >= 0))
 	{
-		hubung.Hubungkan(dKotaUtama.kota[posD].x, dKotaUtama.kota[posD].y, dKotaUtama.kota[posK].x, dKotaUtama.kota[posK].y, namaasal, namatujuan, Node);
+		hubung.Hubungkan(dKotaUtama.kota[posD].x+250, dKotaUtama.kota[posD].y+250, dKotaUtama.kota[posK].x + 250, dKotaUtama.kota[posK].y + 250, namaasal, namatujuan, Node);
 	}
 }
 int Text::cari(std::string carikota)

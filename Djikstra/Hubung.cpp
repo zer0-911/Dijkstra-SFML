@@ -12,6 +12,50 @@ void Hubung::Hubungkan(float x1, float y1, float x2, float y2, std::string kotaa
     line[0].position = sf::Vector2f(x1,y1);
     line[1].position = sf::Vector2f(x2,y2);
     m_garis.push_back(line);
+
+    sf::VertexArray linetitik(sf::Lines, 2);
+    
+    int bily,bilx;
+    bily = y2 - y1;
+    bilx = x2 - x1;
+    if ((bily>0)&&(bilx==0))
+    {
+        linetitik[0].position = sf::Vector2f(x2, y2-50);
+        linetitik[1].position = sf::Vector2f(x2+25, y2-50);
+        linetitik[0].color = sf::Color::Red;
+        linetitik[1].color = sf::Color::Red;
+
+        m_garistanda.push_back(linetitik);
+    }
+    else if ((bily < 0) && (bilx == 0))
+    {
+        linetitik[0].position = sf::Vector2f(x2, y2+50);
+        linetitik[1].position = sf::Vector2f(x2-25, y2+50);
+        linetitik[0].color = sf::Color::Red;
+        linetitik[1].color = sf::Color::Red;
+
+        m_garistanda.push_back(linetitik);
+    }
+    else if ((bily > 0) && (bilx > 0))
+    {
+        linetitik[0].position = sf::Vector2f(x2 -25 , y2 - 50);
+        linetitik[1].position = sf::Vector2f(x2 - 25, y2 - 25);
+        linetitik[0].color = sf::Color::Red;
+        linetitik[1].color = sf::Color::Red;
+
+        m_garistanda.push_back(linetitik);
+    }
+    else if ((bily < 0) && (bilx < 0))
+    {
+        linetitik[0].position = sf::Vector2f(x2 + 25, y2 + 50);
+        linetitik[1].position = sf::Vector2f(x2 + 25, y2 + 25);
+        linetitik[0].color = sf::Color::Red;
+        linetitik[1].color = sf::Color::Red;
+
+        m_garistanda.push_back(linetitik);
+    }
+    
+
     hasil = 0;
     hasil2 = 0;
     A = 0;
@@ -23,11 +67,9 @@ void Hubung::Hubungkan(float x1, float y1, float x2, float y2, std::string kotaa
     B = (y2 - y1) * (y2 - y1);
     hasil = sqrt(A + B);
     hasil2 = std::round(hasil * 100);
-    std::cout << kotaasal << " " << kotatujuan << " " << hasil << "\n";
+    //std::cout << kotaasal << " " << kotatujuan << " " << hasil << "\n";
     //Memanggil fungsi yang ada di kelas JarakTerdekat
-    bool b;
-    b = djikstra.Hubung(kotaasal, kotatujuan, hasil2, hasil);
-    b = djikstra.Hubung(kotatujuan, kotaasal, hasil2, hasil);
+    djikstra.Hubung(kotaasal, kotatujuan, hasil2, hasil);
     //Memaasukkan teks ke jarak[banyak]
     jarak[banyak] = std::to_string(hasil);
     //Menentukan posisi dari teks yang berisi jarak
@@ -53,8 +95,12 @@ void Hubung::DjikstraOn(std::string Asal, std::string Tujuan)
     //Memanggil fungsi di kelas JarakTerdekat
     djikstra.reset();
     djikstra.InitFungsiDjikstra();
-    djikstra.djikstra(Tujuan, 0);
-    djikstra.CariRute(Asal);
+    djikstra.djikstra(Asal, 0, Asal, Tujuan);
+    int Tj;
+    Tj = djikstra.CariIndeksKota(Tujuan);
+    djikstra.pencarianJalur(Tj);
+    djikstra.masukteks();
+    djikstra.masukline();
 }
 
 void Hubung::drawline(sf::RenderWindow& window)
@@ -64,6 +110,7 @@ void Hubung::drawline(sf::RenderWindow& window)
     {
         window.draw(m_garis[i]);
         window.draw(teksjarak[i]);
+       // window.draw(m_garistanda[i]);
     }
     djikstra.drawlineterdekat(window);
 }

@@ -56,13 +56,13 @@ void City::img(std::string teks, std::string ximg, std::string yimg)
 	}
 	//Menentukan kota. Posisi, ukuran, dan gambar yang dipakai
 	DCity[NodeC].setTexture(texture[NodeC]);
-	DCity[NodeC].setPosition({ ximage-22,yimage-25 });
+	DCity[NodeC].setPosition({ ximage-22+250,yimage-25+250 });
 	DCity[NodeC].setScale({ 0.050, 0.050 });
 	tekskota[NodeC].setFillColor(sf::Color::Black);
 	tekskota[NodeC].setFont(fontcity);
 	tekskota[NodeC].setCharacterSize(14);
 	tekskota[NodeC].setString(teks);
-	tekskota[NodeC].setPosition({ ximage, yimage - 45 });
+	tekskota[NodeC].setPosition({ ximage + 250 , yimage - 45 + 250 });
 	NodeC++;
 }
 

@@ -57,10 +57,10 @@ bool Button::Button::MouseDiatasButton(sf::RenderWindow& window)
 	int btnPosX = button.getPosition().x;
 	int btnPosY = button.getPosition().y;
 
-	int btnxPosWidth = button.getPosition().x + btnLebar;
-	int btnyPosHeight = button.getPosition().y + btnTinggi;
+	int btnxPosLebar = button.getPosition().x + btnLebar;
+	int btnyPosTinggi = button.getPosition().y + btnTinggi;
 
-	if ((mouseX < btnxPosWidth) && (mouseX > btnPosX) && (mouseY < btnyPosHeight) && (mouseY > btnPosY)) {
+	if ((mouseX < btnxPosLebar) && (mouseX > btnPosX) && (mouseY < btnyPosTinggi) && (mouseY > btnPosY)) {
 		return true;
 	}
 	return false;

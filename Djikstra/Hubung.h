@@ -17,6 +17,7 @@ private:
 	std::string jarak[100];
 	//Membuat vectior dari vertex array untuk digunakan pada pembuatan garis
 	std::vector<sf::VertexArray> m_garis;
+	std::vector<sf::VertexArray> m_garistanda;
 	sf::Text teksjarak[100];
 	sf::Font font;
 	//Pemanggilan class jarak terdekat dan penamaannya
